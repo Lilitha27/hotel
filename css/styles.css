@@ -32,7 +32,7 @@ h1{
 }
 .confirmed{
     color: wheat;
-    
+
 }
 #images{
     display: inline-flex;
@@ -43,4 +43,8 @@ h1{
    
     /* padding-right:10%; */
 
+}
+.duplicate{
+    color: aliceblue;
+    
 } 

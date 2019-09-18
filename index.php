@@ -82,19 +82,19 @@ session_start();
                 <br>
                 
         
-                <?php
-if (isset($_POST['submit'])){
-    $_SESSION['firstname'] = $_POST['firstname'];
-    $_SESSION['surname'] = $_POST['surname'];
-    $_SESSION['hotelname'] = $_POST['hotelname'];
-    $_SESSION['indate'] = $_POST['indate'];
-    $_SESSION['outdate'] = $_POST['outdate'];
+<?php
+    if (isset($_POST['submit'])){
+        $_SESSION['firstname'] = $_POST['firstname'];
+        $_SESSION['surname'] = $_POST['surname'];
+        $_SESSION['hotelname'] = $_POST['hotelname'];
+        $_SESSION['indate'] = $_POST['indate'];
+        $_SESSION['outdate'] = $_POST['outdate'];
 
-    $datetime1 = new DateTime ($_SESSION['indate']);
-    $datetime2 = new DateTime ($_SESSION['outdate']);
-    $interval = $datetime1->diff($datetime2);
-    $daysBooked = $interval->format('%R%a days');
-    $value;
+        $datetime1 = new DateTime ($_SESSION['indate']);
+        $datetime2 = new DateTime ($_SESSION['outdate']);
+        $interval = $datetime1->diff($datetime2);
+        $daysBooked = $interval->format('%R%a days');
+        $value;
 
     switch($_POST['hotelname']){
         case "The Orleans - R700 per night " ;
@@ -126,37 +126,36 @@ if (isset($_POST['submit'])){
     $result = mysqli_query($conn,"SELECT hotelname, indate, outdate, firstname, surname FROM bookings WHERE firstname='$firstname' && surname='$surname'");
     if ($result->num_rows > 0) {
        while ($row = $result->fetch_assoc()) {
-    echo "<div class='duplicate'> You already have a booking. <br> Firstname: ". $row['firstname'] . "<br>
-    Lastname: " . $row['surname'].
-    "<br> Start Date: " . $row['indate'].
-    "<br> End Date: " . $row['outdate'].
-    "<br> Hotel Name: " . $row['hotelname'].
-    "<br>" . $interval->format('%r%a days') . "<br> Total: R " . $value ."</div>" ."<br>";
+            echo "<div class='duplicate'> You already have a booking. <br> Firstname: ". $row['firstname'] . "<br>
+            Lastname: " . $row['surname'].
+            "<br> Start Date: " . $row['indate'].
+            "<br> End Date: " . $row['outdate'].
+            "<br> Hotel Name: " . $row['hotelname'].
+            "<br>" . $interval->format('%r%a days') . "<br> Total: R " . $value ."</div>" ."<br>";
        }
     }
-    echo '<div class="return">'. "<br> Firstname:".  $_SESSION['firstname']."<br>".
-    "surname:".  $_SESSION['surname']."<br>".
-    "Start Date:". $_SESSION['indate']."<br>".
-    "End Date:". $_SESSION['outdate']."<br>".
-    "Hotel Name:". $_SESSION['hotelname']."<br>".
-    "Total R" . $value ;
-    echo "<form role='form' action=" . htmlspecialchars($_SERVER['PHP_SELF']) . " method='post'>
-    <button name='confirm' type='submit'> Confirm </button> </form>".'</div>';
-    //echo "<form role='form' action=" . htmlspecialchars($_SERVER['PHP_SELF']) . " method='post'><input type='submit' name='confirm'>.'Confirm'.</form>";
+            echo '<div class="return">'. "<br> Firstname:".  $_SESSION['firstname']."<br>".
+            "surname:".  $_SESSION['surname']."<br>".
+            "Start Date:". $_SESSION['indate']."<br>".
+            "End Date:". $_SESSION['outdate']."<br>".
+            "Hotel Name:". $_SESSION['hotelname']."<br>".
+            "Total R" . $value ;
+            echo "<form role='form' action=" . htmlspecialchars($_SERVER['PHP_SELF']) . " method='post'>
+            <button name='confirm' type='submit'> Confirm </button> </form>".'</div>';
+            //echo "<form role='form' action=" . htmlspecialchars($_SERVER['PHP_SELF']) . " method='post'><input type='submit' name='confirm'>.'Confirm'.</form>";
     }
     if(isset($_POST['confirm'])){
     //Preparing and binding a statement
-    //prepare is method, this way we only pass the query once and then the values
-    $stmt=$conn->prepare("INSERT INTO bookings(firstname,surname,hotelname,indate,outdate) VALUES (?,?,?,?,?)");
-    //also part of preparing & binding these values to the questions marks.
-    $stmt->bind_param('sssss', $firstname,$surname,$hotelname,$indate,$outdate);
-    $firstname=$_SESSION['firstname'];
-    $surname=$_SESSION['surname'];
-    $hotelname=$_SESSION['hotelname'];
-    $indate=$_SESSION['indate'];
-    $outdate=$_SESSION['outdate'];
-    $stmt->execute();
-    echo '<div id="confirmed">'."Booking successfully confirmed".'</div>';
+        $stmt=$conn->prepare("INSERT INTO bookings(firstname,surname,hotelname,indate,outdate) VALUES (?,?,?,?,?)");
+        //set the parameters and execute the statement
+        $stmt->bind_param('sssss', $firstname,$surname,$hotelname,$indate,$outdate);
+        $firstname=$_SESSION['firstname'];
+        $surname=$_SESSION['surname'];
+        $hotelname=$_SESSION['hotelname'];
+        $indate=$_SESSION['indate'];
+        $outdate=$_SESSION['outdate'];
+        $stmt->execute();
+        echo '<div id="confirmed">'."Booking successfully confirmed".'</div>';
     }
   
     ?>
