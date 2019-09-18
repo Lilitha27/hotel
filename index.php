@@ -73,6 +73,86 @@ session_start();
                 <br>
                 
         
+ 
+<?php
+if (isset($_POST['submit'])){
+    $_SESSION['firstname'] = $_POST['firstname'];
+    $_SESSION['surname'] = $_POST['surname'];
+    $_SESSION['hotelname'] = $_POST['hotelname'];
+    $_SESSION['indate'] = $_POST['indate'];
+    $_SESSION['outdate'] = $_POST['outdate'];
+
+    $datetime1 = new DateTime ($_SESSION['indate']);
+    $datetime2 = new DateTime ($_SESSION['outdate']);
+    $interval = $datetime1->diff($datetime2);
+    $daysBooked = $interval->format('%R%a days');
+    $value;
+
+    switch($_POST['hotelname']){
+        case "The Orleans - R700 per night " ;
+        echo "<img src='images/orleans.jpg' id='images' >" . "<img src='images/orleans2.jpg' id='images' >" ;
+        $value = $daysBooked * 700;
+        break;
+
+        case "Bellagio - R600 per night" :
+        $value = $daysBooked * 600;
+        echo "<img src='images/bellagio.jpg' id='images' >" . "<img src='images/bel2.jpg' id='images' >" ;
+        
+        break;
+
+        case "The Four Queens - R700 per night" :
+        echo "<img src='images/four.jpg' id='images' >" . "<img src='images/four2.jpg' id='images' >" ;
+        $value = $daysBooked * 700;
+        break;
+
+        case "The Cosmopolitan - R800 per night" :
+        echo "<img src='images/cosmo.jpg' id='images' >" . "<img src='images/cosmo2.jpg' id='images' >" ;
+        $value = $daysBooked * 800;
+        break;
+
+        default :
+        echo "Invalid Booking";
+    }
+    $firstname = $_POST['firstname'];
+    $surname = $_POST['surname'];
+    $hotelname = $_POST['hotelname'];
+    $indate = $_POST['indate'];
+    $outdate = $_POST['outdate'];
+    $result = mysqli_query($conn,"SELECT hotelname, indate, outdate, firstname, surname FROM bookings WHERE firstname='$firstname' && surname='$surname'");
+    if ($result->num_rows > 0) {
+       while ($row = $result->fetch_assoc()) {
+    echo "<div class='duplicate'> You already have a booking. <br> Firstname: ". $row['firstname'] . "<br>
+    Lastname: " . $row['surname'].
+    "<br> Start Date: " . $row['indate'].
+    "<br> End Date: " . $row['outdate'].
+    "<br> Hotel Name: " . $row['hotelname'].
+    "<br>" . $interval->format('%r%a days') . "<br> Total: R " . $value ."</div>";
+       }
+    }
+    echo "<div class='confirm'><br><h7>First Name: </h7>" . $_SESSION['firstname'] . "<br>" .
+    "<h7>Surname: </h7>" . $_SESSION['surname'] . "<br>" .
+    "<h7>Hotel Name: </h7>" . $_SESSION['hotelname'] . "<br>" .
+    "<h7>Start Date: </h7>". $_SESSION['indate'] . "<br>" .
+    "<h7>End Date: </h7>". $_SESSION['outdate'] . "<br>" .
+    $interval->format('%R%a days') . "<br>" .
+    "<h7>Total: </h7>" .$value . "<br>
+    <button type='submit' class='btn btn-primary' name='confirm'>Confirm</button></div>";
+    
+}
+if(isset($_POST['confirm'])){
+    $firstname=$_SESSION['firstname'];
+    $surname=$_SESSION['surname'];
+    $hotelname=$_SESSION['hotelname'];
+    $indate=$_SESSION['indate'];
+    $outdate=$_SESSION['outdate'];
+    $stmt=$conn->prepare("INSERT INTO hotel(firstname,surname,hotelname,indate,outdate) VALUES (?,?,?,?,?)");
+    $stmt->bind_param('sssss', $firstname,$surname,$hotelname,$indate,$outdate);
+    
+    $stmt->execute();
+    echo '<div id="confirmed">'."Booking confirmed".'</div>';
+    }
+?>
+
 </main>       
        
 
