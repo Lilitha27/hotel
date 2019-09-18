@@ -27,10 +27,13 @@ h1{
     /* opacity: 0.5; */
 }
 
-.form,.confirm{
+.form,.return{
     width:50%;
 }
-
+.confirmed{
+    color: wheat;
+    
+}
 #images{
     display: inline-flex;
     width: 20%;

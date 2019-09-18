@@ -20,6 +20,7 @@ session_start();
     <title>Document</title>
 </head>
 <body>
+
     <?php
     require_once "connect.php";
 
@@ -103,7 +104,7 @@ if (isset($_POST['submit'])){
 
         case "Bellagio - R600 per night" :
         $value = $daysBooked * 600;
-        echo "<img src='images/bellagio.jpg' id='images' >" . "<img src='images/bel2.jpg' id='images' >" ;
+        echo "<img src='images/bel.jpg' id='images' >" . "<img src='images/bel2.jpg' id='images' >" ;
         
         break;
 
@@ -130,7 +131,7 @@ if (isset($_POST['submit'])){
     "<br> Start Date: " . $row['indate'].
     "<br> End Date: " . $row['outdate'].
     "<br> Hotel Name: " . $row['hotelname'].
-    "<br>" . $interval->format('%r%a days') . "<br> Total: R " . $value ."</div>";
+    "<br>" . $interval->format('%r%a days') . "<br> Total: R " . $value ."</div>" ."<br>";
        }
     }
     echo '<div class="return">'. "<br> Firstname:".  $_SESSION['firstname']."<br>".
