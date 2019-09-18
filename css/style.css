@@ -20,3 +20,24 @@ h1{
      color:wheat;
     font-weight: bolder;
 } 
+
+.hotel{
+    display: flex;
+    background-color: rgba(153, 153, 153, 0.5);
+    /* opacity: 0.5; */
+}
+
+.form,.confirm{
+    width:50%;
+}
+
+#images{
+    display: inline-flex;
+    width: 20%;
+    height: 150px;
+    margin-top:30%;
+    margin-right:auto;
+   
+    /* padding-right:10%; */
+
+} 
