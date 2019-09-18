@@ -104,7 +104,7 @@ if (isset($_POST['submit'])){
 
         case "Bellagio - R600 per night" :
         $value = $daysBooked * 600;
-        echo "<img src='images/bellagio.jpg' id='images' >" . "<img src='images/bel2.jpg' id='images' >" ;
+        echo "<img src='images/bel.jpg' id='images' >" . "<img src='images/bel2.jpg' id='images' >" ;
         
         break;
 
