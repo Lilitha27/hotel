@@ -4,3 +4,19 @@ body{
     color: wheat;
     font-weight: bolder;
 }
+
+#col{
+    background-color: #999999;
+    opacity: 0.5;
+}
+h1{
+    text-align: center;
+    color: wheat;
+    font-family:'Source Sans Pro';
+}
+
+.form-group{
+    /* opacity: 0; */
+     color:wheat;
+    font-weight: bolder;
+} 
