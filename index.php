@@ -141,8 +141,9 @@ session_start();
         if(isset($_POST['confirm'])){
         //Preparing and binding a statement
             $stmt=$conn->prepare("INSERT INTO bookings(firstname,surname,hotelname,indate,outdate) VALUES (?,?,?,?,?)");
-            //set the parameters and execute the statement
+            //binding the parametears
             $stmt->bind_param('sssss', $firstname,$surname,$hotelname,$indate,$outdate);
+            //set the parameters and execute the statement
             $firstname=$_SESSION['firstname'];
             $surname=$_SESSION['surname'];
             $hotelname=$_SESSION['hotelname'];
