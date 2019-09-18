@@ -3,6 +3,7 @@ body{
     width:100%;
     color: wheat;
     font-weight: bolder;
+    font-family: "Source Sans Pro";
 }
 
 #col{
@@ -46,5 +47,5 @@ h1{
 }
 .duplicate{
     color: aliceblue;
-    
+
 } 

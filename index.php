@@ -9,33 +9,28 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <!-- bootstrap link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- css link -->
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <!-- font link -->
-<link href="https://fonts.googleapis.com/css?family=Concert+One|Source+Sans+Pro&display=swap" rel="stylesheet"> 
-  <!-- bootstrap link -->
-
+    <!-- font link -->
+    <link href="https://fonts.googleapis.com/css?family=Concert+One|Source+Sans+Pro&display=swap" rel="stylesheet"> 
     <title>Document</title>
 </head>
 <body>
-
     <?php
-    require_once "connect.php";
+        require_once "connect.php";
 
-    $sql = "CREATE TABLE bookings (
-        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        firstname VARCHAR(50),
-        surname VARCHAR(50),
-        hotelname VARCHAR(50),
-        indate VARCHAR(30),
-        outdate VARCHAR(30),
-      
-    )";
+        $sql = "CREATE TABLE bookings (
+            firstname VARCHAR(50),
+            surname VARCHAR(50),
+            hotelname VARCHAR(50),
+            indate VARCHAR(30),
+            outdate VARCHAR(30))";
 
-    $conn->query($sql);
-    echo $conn->error;
+        $conn->query($sql);
+        echo $conn->error;
     ?>
 
 <h1>Las Vegas hotel booking</h1>
