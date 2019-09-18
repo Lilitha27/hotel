@@ -1,6 +1,7 @@
+<!-- connection of the database and php  -->
 <?php
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'root');
-define('DB_NAME', 'hotel');
+    define('DB_SERVER', 'localhost');
+    define('DB_USERNAME', 'root');
+    define('DB_PASSWORD', 'root');
+    define('DB_NAME', 'hotel');
 ?>

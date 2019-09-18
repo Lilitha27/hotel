@@ -33,7 +33,7 @@ session_start();
         echo $conn->error;
     ?>
 
-<h1>Las Vegas hotel booking</h1>
+<h1 class="head">Las Vegas hotel booking</h1>
     <main class="container hotel">
         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" class="form">
             <div class="form-group col-md-6">
@@ -152,6 +152,5 @@ session_start();
 
 </main>       
        
-
-    </body>
+</body>
 </html>

@@ -1,3 +1,5 @@
+/* styling the body */
+
 body{
     background-image:url("../images/hotel.jpg");
     width:100%;
@@ -5,11 +7,12 @@ body{
     font-weight: bolder;
     font-family: "Source Sans Pro";
 }
-
+/* styling the col id  */
 #col{
     background-color: #999999;
     opacity: 0.5;
 }
+/* styling the text with a  h1 */
 h1{
     text-align: center;
     color: wheat;
