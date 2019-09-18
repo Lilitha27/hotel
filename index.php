@@ -16,7 +16,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <!-- font link -->
     <link href="https://fonts.googleapis.com/css?family=Concert+One|Source+Sans+Pro&display=swap" rel="stylesheet"> 
-    <title>Document</title>
+    <title>Hotel Booking</title>
 </head>
 <body>
     <?php
@@ -35,18 +35,22 @@ session_start();
 
 <h1 class="head">Las Vegas hotel booking</h1>
     <main class="container hotel">
+        <!-- the whole form -->
         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" class="form">
             <div class="form-group col-md-6">
+                <!-- input for firstname -->
                 <label for="firstName">First name</label>
                 <input type="text" class="form-control" placeholder="First name" name="firstname" required>
             </div>
             <br>
             <div class="form-group col-md-6">
+                <!-- inut for lastname -->
                 <label for="surname">Last name</label>
                 <input type="text" class="form-control" placeholder="Last name" name="surname" required>
             </div>
             <br>
             <div class="form-group col-md-6">
+                <!-- the 4 different hotels  -->
                 <label for="hotels">Select a hotel below :</label>
                 <select class="form-control form-control-lg" name="hotelname" id="hotelName" required>
                     <option value=" ">  </option>
@@ -58,6 +62,7 @@ session_start();
                 </select>
             </div>
             <br>
+            <!-- the date in and out booking of the hotel -->
             <div class="form-group col-md-6">
                 <label for="start">Start date :</label>
                 <input type="date" class="form-control" name="indate" min="2018-01-01" max="2020-12-31" aria-label="Todo Date" aria-describedby="button-addon2">
@@ -65,19 +70,21 @@ session_start();
                 <input type="date" class="form-control" name="outdate" min="2018-01-01" max="2020-12-31" aria-label="Todo Date" aria-describedby="button-addon2">
              </div>
              <br>
+                <!-- the submit button of the form -->
                 <button type="submit" class="btn btn-primary" name="submit">Submit</button>
         </form>
         <br>
                 
         
     <?php
+        // using session and post super-global to post the form
         if (isset($_POST['submit'])){
             $_SESSION['firstname'] = $_POST['firstname'];
             $_SESSION['surname'] = $_POST['surname'];
             $_SESSION['hotelname'] = $_POST['hotelname'];
             $_SESSION['indate'] = $_POST['indate'];
             $_SESSION['outdate'] = $_POST['outdate'];
-
+            // subtracting the indate from the outdate
             $datetime1 = new DateTime ($_SESSION['indate']);
             $datetime2 = new DateTime ($_SESSION['outdate']);
             $interval = $datetime1->diff($datetime2);
@@ -130,7 +137,7 @@ session_start();
                 "Hotel Name:". $_SESSION['hotelname']."<br>".
                 "Total R" . $value ;
                 echo "<form role='form' action=" . htmlspecialchars($_SERVER['PHP_SELF']) . " method='post'>
-                <button name='confirm' type='submit'> Confirm </button> </form>".'</div>';
+                <button type='submit' class='btn btn-primary' name='confirm'>Confirm</button></form>".'</div>';
                 //echo "<form role='form' action=" . htmlspecialchars($_SERVER['PHP_SELF']) . " method='post'><input type='submit' name='confirm'>.'Confirm'.</form>";
         }
         if(isset($_POST['confirm'])){
